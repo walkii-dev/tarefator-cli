@@ -10,11 +10,14 @@ public class Main {
         final String PURPLE = "\u001B[35m";
 
         while(!exitCondition) {
-            System.out.print(PURPLE+"tarefator-cli "+PURPLE);
+            System.out.print(PURPLE + "tarefator-cli " + PURPLE);
+
             command = input.nextLine();
-            if (command.equals("exit")){
-                exitCondition = true;
+
+            switch (command) {
+                case "exit": { exitCondition = true; }
             }
+
         }
     }
 }
