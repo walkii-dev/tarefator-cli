@@ -16,6 +16,7 @@ public class Main {
             switch (command) {
                 case "exit": { exitCondition = true; break;}
                 case "help": { System.out.print("\ncommands:\n>help: show all commands avaliable\n>exit: exit application\n\n"); break;}
+                default: { System.out.println("command not allowed, please type 'help' to further informations."); }
             }
 
         }
