@@ -7,9 +7,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         boolean exitCondition = false;
         String command;
+        final String PURPLE = "\u001B[35m";
 
         while(!exitCondition) {
-            System.out.print("tarefator-cli ");
+            System.out.print(PURPLE+"tarefator-cli "+PURPLE);
             command = input.nextLine();
             if (command.equals("exit")){
                 exitCondition = true;
