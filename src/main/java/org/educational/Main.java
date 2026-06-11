@@ -11,11 +11,11 @@ public class Main {
 
         while(!exitCondition) {
             System.out.print(PURPLE + "tarefator-cli " + PURPLE);
-
             command = input.nextLine();
 
             switch (command) {
-                case "exit": { exitCondition = true; }
+                case "exit": { exitCondition = true; break;}
+                case "help": { System.out.print("\ncommands:\n>help: show all commands avaliable\n>exit: exit application\n\n"); break;}
             }
 
         }
