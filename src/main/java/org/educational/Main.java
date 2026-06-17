@@ -3,14 +3,18 @@ package org.educational;
 import java.util.Scanner;
 
 public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static final String PURPLE = "\u001B[35m";
+    public static final String RESET = "\u001B[0m";
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         boolean exitCondition = false;
         String command;
-        final String PURPLE = "\u001B[35m";
 
         while(!exitCondition) {
-            System.out.print(PURPLE + "tarefator-cli " + PURPLE);
+            System.out.print(PURPLE + "tarefator-cli "+RESET);
             command = input.nextLine();
 
                 String[] processCommand = command.split(" ");
