@@ -10,6 +10,7 @@ public class Main {
     public static final String RESET = "\u001B[0m";
 
     public static void main(String[] args) {
+
         boolean exitCondition = false;
         String command;
 
@@ -17,14 +18,13 @@ public class Main {
             System.out.print(PURPLE + "tarefator-cli "+RESET);
             command = input.nextLine();
 
-                String[] processCommand = command.split(" ");
-             if (command.split(" ").length > 3){
-                 System.out.println("maximum of commands inputed. please try again.");
-             } else {
+                String[] processCommand = command.split(" "); // auxilia no entendimento do comando
+
                  switch (processCommand[0]) {
                      case "add": {
                          Task newTask = new Task(processCommand[1]);
-                         System.out.println("task created: \"" + newTask.getDescription() + "\"");
+                         System.out.println("task "+newTask.getDescription()+" created successfully (ID: "+newTask.getId()+")");
+                         break;
                      }
                      // não está finalizado
 
@@ -42,7 +42,10 @@ public class Main {
                      }
 
                      case "help": {
-                         System.out.print("\ncommands:\n>help: show all commands avaliable\n>exit: exit application\n\n");
+                         System.out.print("\ncommands:\n" +
+                                 ">add \"<taskname>\": add a new task\n" +
+                                 ">help: show all commands avaliable\n" +
+                                 ">exit: exit application\n\n");
                          break;
                      }
 
@@ -51,7 +54,7 @@ public class Main {
                      }
                  }
 
-             }
+
         }
     }
 }
