@@ -60,4 +60,13 @@ public class Task {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "{ \"id\": "+this.id+"," +
+                " \"description\": "+this.description+"," +
+                " \"status\": "+this.status+"," +
+                " \"createdAt\": "+this.createdAt+"," +
+                " \"updatedAt\": "+this.updatedAt+" }";
+    }
 }
