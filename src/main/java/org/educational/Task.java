@@ -62,9 +62,10 @@ public class Task {
     }
 
     public static void createTask(String taskDescription) {
-        System.out.println(String.format("tarefa \"%s\" criada!",taskDescription));
-        //System.out.println("task "+newTask.getDescription()+" created successfully (ID: "+newTask.getId()+")");
-        //Files.writeString( arquivo, newTask.toString)
+
+
+
+        System.out.println(String.format("task \"%s\" created successfully!",taskDescription));
     }
 
     @Override
