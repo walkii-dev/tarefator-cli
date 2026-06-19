@@ -61,6 +61,12 @@ public class Task {
         this.updatedAt = createdAt;
     }
 
+    public static void createTask(String taskDescription) {
+        System.out.println(String.format("tarefa \"%s\" criada!",taskDescription));
+        //System.out.println("task "+newTask.getDescription()+" created successfully (ID: "+newTask.getId()+")");
+        //Files.writeString( arquivo, newTask.toString)
+    }
+
     @Override
     public String toString() {
         return "{ \"id\": "+this.id+"," +
