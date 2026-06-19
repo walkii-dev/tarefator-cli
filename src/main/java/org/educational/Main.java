@@ -1,4 +1,8 @@
 package org.educational;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Main {
@@ -8,7 +12,10 @@ public class Main {
     public static final String PURPLE = "\u001B[35m";
     public static final String RESET = "\u001B[0m";
 
+    public static final Path FILE_NAME = Path.of("tasks.json");
+
     public static void main(String[] args) {
+
 
         boolean exitCondition = false;
         String command;
@@ -21,8 +28,7 @@ public class Main {
 
                  switch (processCommand[0]) {
                      case "add": {
-                         Task newTask = new Task(processCommand[1]);
-                         System.out.println("task "+newTask.getDescription()+" created successfully (ID: "+newTask.getId()+")");
+                         Task.createTask(command.substring(4));
                          break;
                      }
                      // não está finalizado
@@ -41,10 +47,14 @@ public class Main {
                      }
 
                      case "help": {
-                         System.out.print("\ncommands:\n" +
-                                 ">add \"<taskname>\": add a new task\n" +
-                                 ">help: show all commands avaliable\n" +
-                                 ">exit: exit application\n\n");
+                         System.out.print("""
+                                 
+                                 commands:
+                                 >add "<taskname>": add a new task
+                                 >help: show all commands avaliable
+                                 >exit: exit application
+                                 
+                                 """);
                          break;
                      }
 
