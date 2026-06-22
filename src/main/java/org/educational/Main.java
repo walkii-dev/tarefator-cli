@@ -3,6 +3,8 @@ package org.educational;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
@@ -18,6 +20,8 @@ public class Main {
 
         verifyDataExistence();
 
+        var taskData = new ArrayList<Task>();
+
         boolean exitCondition = false;
         String command;
 
@@ -27,6 +31,11 @@ public class Main {
 
             String[] processCommand = command.split(" ");
             switch (processCommand[0]) {
+
+                case "list": {
+                    // função que serializa o string json em item tarefa.
+                }
+
                 case "add": {
                     Task.createTask(command.substring(4));
                     break;
@@ -38,8 +47,6 @@ public class Main {
 
                 //marcação de task
 
-                //listagem de task
-
                 case "exit": {
                     exitCondition = true;
                     break;
@@ -47,12 +54,10 @@ public class Main {
 
                 case "help": {
                     System.out.print("""
-                            
                             commands:
                             >add "<taskname>": add a new task
                             >help: show all commands avaliable
                             >exit: exit application
-                            
                             """);
                     break;
                 }
@@ -76,4 +81,12 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+    public static void serializeJsonStringToTask(){
+
+    }
+
+    //funcao de serialização de itens da lista
+
+    // trigger de verificação de alteração de dados, evitando apagar dados indiretamente ao reinício do programa.
 }
