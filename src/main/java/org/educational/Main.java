@@ -32,12 +32,13 @@ public class Main {
             String[] processCommand = command.split(" ");
             switch (processCommand[0]) {
 
-                case "list": {
-                    // função que serializa o string json em item tarefa.
-                }
-
                 case "add": {
-                    Task.createTask(command.substring(4));
+                    taskData.add(Task.createTask(command.substring(4)));
+                    taskData.getLast().setId(taskData.indexOf(taskData.getLast()) + 1);
+                    System.out.println(String.format("task \"%s\" created with success! (ID: %d )",
+                            taskData.getLast().getDescription(),
+                            taskData.getLast().getId()));
+                    //vai dar null pois está incompleto!!!
                     break;
                 }
 
@@ -47,7 +48,35 @@ public class Main {
 
                 //marcação de task
 
+                case "list": {
+                    if (command.substring(4).length() > 1) {
+                        switch (command.substring(5)) {
+                            case "todo": {
+                                System.out.println("todo tasks.");
+                                break;
+                            }
+                            case "done": {
+                                System.out.println("done tasks.");
+                                break;
+                            }
+                            case "in-progress": {
+                                System.out.println("tasks in progress.");
+                                break;
+                            }
+                            default: {
+                                System.out.println(" please type \"list done\", \"list todo\"" +
+                                        " or \"list in-progress\" to see specific tasks status.");
+                            }
+                        }
+                    } else {
+                        System.out.println("All tasks:");
+                        System.out.println(taskData);
+                    }
+                    break;
+                }
+
                 case "exit": {
+                    saveAlterations(taskData);
                     exitCondition = true;
                     break;
                 }
@@ -56,6 +85,8 @@ public class Main {
                     System.out.print("""
                             commands:
                             >add "<taskname>": add a new task
+                            >list: list all tasks
+                            >list todo,done or in-progress: list tasks by status
                             >help: show all commands avaliable
                             >exit: exit application
                             """);
@@ -83,10 +114,16 @@ public class Main {
     }
 
     public static void serializeJsonStringToTask(){
-
+        //funcao de serialização de itens da lista
     }
 
-    //funcao de serialização de itens da lista
+    public static void saveAlterations(ArrayList<Task> tasks){
+        StringBuilder sb = new StringBuilder();
+        tasks.forEach(t -> sb.append(t.toString()));
+        //função que salva as alterações no array e entrega ao json.
+    }
+
+
 
     // trigger de verificação de alteração de dados, evitando apagar dados indiretamente ao reinício do programa.
 }
