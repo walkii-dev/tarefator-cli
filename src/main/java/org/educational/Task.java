@@ -52,20 +52,13 @@ public class Task {
     public Task() {
     }
 
-
-    public Task(String description){
-        this.id = 1;
-        this.description= description;
-        this.status =TaskStatus.TODO;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = createdAt;
+    public Task(String description) {
+        this.description = description;
     }
 
-    public static void createTask(String taskDescription) {
-
-
-
-        System.out.println(String.format("task \"%s\" created successfully!",taskDescription));
+    public static Task createTask(String taskDescription) {
+        Task task = new Task();
+        return task;
     }
 
     @Override
