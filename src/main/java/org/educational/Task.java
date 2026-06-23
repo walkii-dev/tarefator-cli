@@ -55,6 +55,16 @@ public class Task {
     public Task(String description) {
         this.description = description;
     }
+/*
+    { "id": 1,
+      "description": "teste 1",
+      "status": TODO,
+      "createdAt": "2026-06-23T17:01:39.883283100",
+      "updatedAt": "2026-06-23T17:01:39.883283100" }
+ */
+    public static void getTaskFromString(String jsonTask){
+        // função que destrincha a string procurando informações para criar uma tarefa.
+    }
 
     public static Task createTask(String taskDescription) {
         Task task = new Task();
@@ -68,10 +78,10 @@ public class Task {
 
     @Override
     public String toString() {
-        return "{ \"id\": "+this.id+"," +
-                " \"description\": \""+this.description+"\"," +
-                " \"status\": "+this.status+"," +
-                " \"createdAt\": \""+this.createdAt+"\"," +
-                " \"updatedAt\": \""+this.updatedAt+"\" }";
+        return "{\"id\":"+this.id+"," +
+                "\"description\":\""+this.description+"\"," +
+                "\"status\":"+this.status+"," +
+                "\"createdAt\":\""+this.createdAt+"\"," +
+                "\"updatedAt\":\""+this.updatedAt+"\"}";
     }
 }

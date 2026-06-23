@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.educational.Task.getTaskFromString;
+
 public class Main {
 
-    public static ArrayList<Task> taskData = new ArrayList<>();
+    public static List<Task> taskData = new ArrayList<>();
 
     public static final Scanner INPUT = new Scanner(System.in);
 
@@ -122,15 +124,16 @@ public class Main {
         }
     }
 
-    public static ArrayList<Task> verifyPreviousData(ArrayList<Task> tasks){
+    public static List<Task> verifyPreviousData(List<Task> tasks){
         return taskData;
     }
 
-    public static void serializeJsonStringToTask(){
-        //funcao de serialização de itens da lista
+    public static void serializeJsonStringToTask() throws IOException {
+        String firstData = Files.readString(FILE_LOCATION).split("\\\\[\\\\]")[1];
+        //função que transforma o texto em uma lista de tarefas que ja estavam salvas no início do programa.
     }
 
-    public static void saveAlterations(ArrayList<Task> tasks) throws IOException {
+    public static void saveAlterations(List<Task> tasks) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("{\"tasks\":[");
         tasks.forEach(t -> { sb.append(t.toString()).append(",\n"); });
