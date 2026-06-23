@@ -5,22 +5,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    public static ArrayList<Task> taskData = new ArrayList<>();
 
     public static final Scanner INPUT = new Scanner(System.in);
 
     public static final String PURPLE = "\u001B[35m";
     public static final String RESET = "\u001B[0m";
 
-    public static final Path FILE_NAME = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
+    public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
 
     public static void main(String[] args) {
 
         verifyDataExistence();
 
-        var taskData = new ArrayList<Task>();
 
         boolean exitCondition = false;
         String command;
@@ -38,7 +40,6 @@ public class Main {
                     System.out.println(String.format("task \"%s\" created with success! (ID: %d )",
                             taskData.getLast().getDescription(),
                             taskData.getLast().getId()));
-                    //vai dar null pois está incompleto!!!
                     break;
                 }
 
@@ -76,7 +77,15 @@ public class Main {
                 }
 
                 case "exit": {
-                    saveAlterations(taskData);
+
+                    //trigger para verificar se houve alterações na lista de tarefas.
+
+                    try {
+                        saveAlterations(taskData);
+                    } catch (IOException e) {
+                        System.out.println("error on save tasks.");
+                        e.printStackTrace();
+                    }
                     exitCondition = true;
                     break;
                 }
@@ -86,7 +95,7 @@ public class Main {
                             commands:
                             >add "<taskname>": add a new task
                             >list: list all tasks
-                            >list todo,done or in-progress: list tasks by status
+                            >list <todo/done/in-progress>: list tasks by status
                             >help: show all commands avaliable
                             >exit: exit application
                             """);
@@ -101,10 +110,10 @@ public class Main {
     }
     public static void verifyDataExistence() {
         try {
-            if (!Files.exists(FILE_NAME)) {
-                Files.createFile(FILE_NAME);
+            if (!Files.exists(FILE_LOCATION)) {
+                Files.createFile(FILE_LOCATION);
                 System.out.println("arquivo criado!");
-                Files.writeString(FILE_NAME, "{}");
+                Files.writeString(FILE_LOCATION, "{}");
             }else{
                 System.out.println("Arquivo existente.");
             }
@@ -113,17 +122,20 @@ public class Main {
         }
     }
 
+    public static ArrayList<Task> verifyPreviousData(ArrayList<Task> tasks){
+        return taskData;
+    }
+
     public static void serializeJsonStringToTask(){
         //funcao de serialização de itens da lista
     }
 
-    public static void saveAlterations(ArrayList<Task> tasks){
+    public static void saveAlterations(ArrayList<Task> tasks) throws IOException {
         StringBuilder sb = new StringBuilder();
-        tasks.forEach(t -> sb.append(t.toString()));
-        //função que salva as alterações no array e entrega ao json.
+        sb.append("{\"tasks\":[");
+        tasks.forEach(t -> { sb.append(t.toString()).append(",\n"); });
+        sb.deleteCharAt(sb.length()-2);
+        sb.append("]}");
+        Files.writeString(FILE_LOCATION,sb);
     }
-
-
-
-    // trigger de verificação de alteração de dados, evitando apagar dados indiretamente ao reinício do programa.
 }

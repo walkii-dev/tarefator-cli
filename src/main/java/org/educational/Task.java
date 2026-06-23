@@ -58,15 +58,20 @@ public class Task {
 
     public static Task createTask(String taskDescription) {
         Task task = new Task();
+        task.setId(0);
+        task.setDescription(taskDescription);
+        task.setStatus(TaskStatus.TODO);
+        task.createdAt = LocalDateTime.now();
+        task.updatedAt = LocalDateTime.now();
         return task;
     }
 
     @Override
     public String toString() {
         return "{ \"id\": "+this.id+"," +
-                " \"description\": "+this.description+"," +
+                " \"description\": \""+this.description+"\"," +
                 " \"status\": "+this.status+"," +
-                " \"createdAt\": "+this.createdAt+"," +
-                " \"updatedAt\": "+this.updatedAt+" }";
+                " \"createdAt\": \""+this.createdAt+"\"," +
+                " \"updatedAt\": \""+this.updatedAt+"\" }";
     }
 }
