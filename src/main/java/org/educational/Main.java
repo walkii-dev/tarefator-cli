@@ -84,7 +84,7 @@ public class Main {
                     try {
                         saveAlterations(taskData);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        throw new IOException(e);
                     }
                     exitCondition = true;
                     break;
