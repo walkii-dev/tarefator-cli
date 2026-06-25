@@ -3,10 +3,7 @@ package org.educational;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -19,7 +16,7 @@ public class Main {
 
     public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
 
         verifyPreviousDataExistence(FILE_LOCATION);
 
@@ -43,6 +40,22 @@ public class Main {
                                 taskData.getLast().getDescription(),
                                 taskData.getLast().getId());
                     }
+                    break;
+                }
+
+                case "delete": {
+//                    if (command.equals("delete")) {
+//                        System.out.println("please type the id of the task. example: 'delete 1'.");
+//                    } else {
+//                        if (Integer.parseInt(command.substring(7)) == 0 ||
+//                                Integer.parseInt(command.substring(7)) > taskData.size() - 1) {
+//                            System.out.println("id not found,please try again.");
+//                        } else {
+//                            taskData.remove(Integer.parseInt(command.substring(7)));
+//                            System.out.printf("task \"%s\" deleted with success.%n",
+//                                    taskData.getLast().getDescription());
+//                        }
+//                    }
                     break;
                 }
 
@@ -111,14 +124,14 @@ public class Main {
 
     public static void verifyPreviousDataExistence(Path path) throws IOException {
         if (Files.exists(path)) {
-                int fileLength = Files.readString(path).length();
-                if (fileLength <= 11) {
-                    System.out.println("not suficient info found.");
-                } else {
-                    serializeJsonStringToTasks(path);
-                }
+            int fileLength = Files.readString(path).length();
+            if (fileLength <= 11) {
+                System.out.println("not suficient info found.");
+            } else {
+                serializeJsonStringToTasks(path);
+            }
         } else {
-                Files.createFile(path);
+            Files.createFile(path);
         }
     }
 
