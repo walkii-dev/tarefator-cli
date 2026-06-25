@@ -35,7 +35,7 @@ public class Main {
 
                 case "add": {
                     if (command.equals("add")) {
-                        System.out.println("please type the description of the action. example: \"add sleep\".");
+                        System.out.println("please type the description of the action. example: 'add \"sleep\"'.");
                     } else {
                         taskData.add(Task.createTask(command.substring(4)));
                         taskData.getLast().setId(taskData.indexOf(taskData.getLast()) + 1);
@@ -113,7 +113,7 @@ public class Main {
         if (Files.exists(path)) {
                 int fileLength = Files.readString(path).length();
                 if (fileLength <= 11) {
-                    System.out.println("não há dados prévios suficientes.");
+                    System.out.println("not suficient info found.");
                 } else {
                     serializeJsonStringToTasks(path);
                 }
