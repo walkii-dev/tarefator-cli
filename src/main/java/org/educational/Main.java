@@ -19,7 +19,7 @@ public class Main {
 
     public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
 
         verifyPreviousDataExistence(FILE_LOCATION);
 
@@ -83,7 +83,7 @@ public class Main {
 
                     try {
                         saveAlterations(taskData);
-                    } catch (IOException e){
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                     exitCondition = true;
@@ -109,23 +109,16 @@ public class Main {
         }
     }
 
-    public static void verifyPreviousDataExistence(Path path) {
+    public static void verifyPreviousDataExistence(Path path) throws IOException {
         if (Files.exists(path)) {
-            try {
                 int fileLength = Files.readString(path).length();
-                if (fileLength <= 11 ) {
+                if (fileLength <= 11) {
                     System.out.println("não há dados prévios suficientes.");
-                } else { serializeJsonStringToTasks(path); }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
+                } else {
+                    serializeJsonStringToTasks(path);
+                }
         } else {
-            try {
                 Files.createFile(path);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
