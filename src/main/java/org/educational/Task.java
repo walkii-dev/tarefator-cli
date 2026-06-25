@@ -75,7 +75,7 @@ public class Task {
     public static Task createTask(String taskDescription) {
         Task task = new Task();
         task.setId(0);
-        task.setDescription(taskDescription);
+        task.setDescription(taskDescription.replace("\"",""));
         task.setStatus(TaskStatus.TODO);
         task.createdAt = LocalDateTime.now();
         task.updatedAt = LocalDateTime.now();
