@@ -59,8 +59,6 @@ public class Main {
                     break;
                 }
 
-                //deleção de task
-
                 //edição de task
 
                 //marcação de task

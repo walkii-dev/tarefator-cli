@@ -75,7 +75,7 @@ public class Task {
         t.setUpdatedAt(LocalDateTime.parse(taskProperties.get(4).split("\":")[1].replace("}", "").trim()));
         return t;
     }
-
+        //futuramente troca essa função aqui, pode ser um construtor!
     public static Task createTask(String taskDescription) {
         Task task = new Task();
         task.setId(0);
