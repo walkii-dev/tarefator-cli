@@ -5,4 +5,10 @@ public enum TaskStatus {
     IN_PROGRESS,
     DONE;
 
+    public String status;
+
+    public String getStatus(){
+        return status;
+    }
+
 }

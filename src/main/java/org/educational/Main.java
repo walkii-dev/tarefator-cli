@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.educational.Task.getTaskFromString;
 
@@ -24,6 +26,10 @@ public class Main {
     public static void main(String[] args) {
 
         verifyDataExistence();
+
+        try{ serializeJsonStringToTasks(); } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         boolean exitCondition = false;
@@ -128,9 +134,18 @@ public class Main {
         return taskData;
     }
 
-    public static void serializeJsonStringToTask() throws IOException {
-        String firstData = Files.readString(FILE_LOCATION).split("\\\\[\\\\]")[1];
-        //função que transforma o texto em uma lista de tarefas que ja estavam salvas no início do programa.
+    public static List<Task> serializeJsonStringToTasks() throws IOException {
+        String firstData = Files.readString(FILE_LOCATION);
+
+        firstData = firstData.substring(10,firstData.length()-2);
+
+        List<String> previousTaskData = Arrays.stream(firstData.split("},")).toList();
+
+        previousTaskData.forEach(str -> {
+            taskData.add(Task.getTaskFromString(str));
+        });
+        taskData.forEach(System.out::println);
+        return taskData;
     }
 
     public static void saveAlterations(List<Task> tasks) throws IOException {
