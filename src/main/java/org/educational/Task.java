@@ -1,7 +1,6 @@
 package org.educational;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,27 +58,17 @@ public class Task {
         this.description = description;
     }
 
-    public static Task getTaskFromString(String jsonTask){
+
+    public static Task getTaskFromString(String jsonTask) {
         Task t = new Task();
+
         List<String> taskProperties = Arrays.stream(jsonTask.split(",")).toList();
 
-        taskProperties.forEach(System.out::println);
-
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy'T'HH:mm:ss.SS");
-
         t.setId(Integer.parseInt(taskProperties.get(0).split(":")[1].trim()));
-        t.setDescription("\""+taskProperties.get(1).split(":")[1].trim()+"\"");
+        t.setDescription(taskProperties.get(1).split(":")[1].trim());
         t.setStatus(TaskStatus.valueOf(taskProperties.get(2).split(":")[1].trim())); // melhorar esse enum
-        t.setCreatedAt(LocalDateTime.parse(taskProperties.get(3).split("\": ")[1].split("\"")[1].trim()));
-        t.setUpdatedAt(LocalDateTime.parse(taskProperties.get(4).split("\": ")[1].split("\"")[1].trim()));
-/*
-
-        ATENÇÃO NÃO ESTÁ MAIS RODANDO E AS TAREFAS ESTÃO COM DUAS ASPAS FAVOR RESOLVER !!!
-
- */
-        //falta verificar esses ultimos dois
-
-        System.out.println("passou aqui ja ta configurado");
+        t.setCreatedAt(LocalDateTime.parse(taskProperties.get(3).split("\":")[1].replace("}", "").trim()));
+        t.setUpdatedAt(LocalDateTime.parse(taskProperties.get(4).split("\":")[1].replace("}", "").trim()));
         return t;
     }
 
@@ -95,10 +84,10 @@ public class Task {
 
     @Override
     public String toString() {
-        return "{\"id\":"+this.id+"," +
-                "\"description\":\""+this.description+"\"," +
-                "\"status\":"+this.status+"," +
-                "\"createdAt\":\""+this.createdAt+"\"," +
-                "\"updatedAt\":\""+this.updatedAt+"\"}";
+        return "{\"id\":" + this.id + "," +
+                "\"description\":" + this.description + "," +
+                "\"status\":" + this.status + "," +
+                "\"createdAt\":" + this.createdAt + "," +
+                "\"updatedAt\":" + this.updatedAt + "}";
     }
 }

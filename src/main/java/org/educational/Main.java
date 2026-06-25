@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static org.educational.Task.getTaskFromString;
 
 public class Main {
 
@@ -25,12 +21,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        verifyDataExistence();
-
-        try{ serializeJsonStringToTasks(); } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        verifyPreviousDataExistence(FILE_LOCATION);
 
         boolean exitCondition = false;
         String command;
@@ -43,11 +34,15 @@ public class Main {
             switch (processCommand[0]) {
 
                 case "add": {
-                    taskData.add(Task.createTask(command.substring(4)));
-                    taskData.getLast().setId(taskData.indexOf(taskData.getLast()) + 1);
-                    System.out.println(String.format("task \"%s\" created with success! (ID: %d )",
-                            taskData.getLast().getDescription(),
-                            taskData.getLast().getId()));
+                    if (command.equals("add")) {
+                        System.out.println("please type the description of the action. example: \"add sleep\".");
+                    } else {
+                        taskData.add(Task.createTask(command.substring(4)));
+                        taskData.getLast().setId(taskData.indexOf(taskData.getLast()) + 1);
+                        System.out.printf("task \"%s\" created with success! (ID: %d )%n",
+                                taskData.getLast().getDescription(),
+                                taskData.getLast().getId());
+                    }
                     break;
                 }
 
@@ -79,19 +74,16 @@ public class Main {
                         }
                     } else {
                         System.out.println("All tasks:");
-                        System.out.println(taskData);
+                        taskData.forEach(System.out::println);
                     }
                     break;
                 }
 
                 case "exit": {
 
-                    //trigger para verificar se houve alterações na lista de tarefas.
-
                     try {
                         saveAlterations(taskData);
-                    } catch (IOException e) {
-                        System.out.println("error on save tasks.");
+                    } catch (IOException e){
                         e.printStackTrace();
                     }
                     exitCondition = true;
@@ -116,44 +108,46 @@ public class Main {
             }
         }
     }
-    public static void verifyDataExistence() {
-        try {
-            if (!Files.exists(FILE_LOCATION)) {
-                Files.createFile(FILE_LOCATION);
-                System.out.println("arquivo criado!");
-                Files.writeString(FILE_LOCATION, "{}");
-            }else{
-                System.out.println("Arquivo existente.");
+
+    public static void verifyPreviousDataExistence(Path path) {
+        if (Files.exists(path)) {
+            try {
+                int fileLength = Files.readString(path).length();
+                if (fileLength <= 11 ) {
+                    System.out.println("não há dados prévios suficientes.");
+                } else { serializeJsonStringToTasks(path); }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        } else {
+            try {
+                Files.createFile(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
-    public static List<Task> verifyPreviousData(List<Task> tasks){
-        return taskData;
-    }
+    public static void serializeJsonStringToTasks(Path path) {
+        try {
+            String firstData = Files.readString(path);
+            firstData = firstData.substring(10, firstData.length() - 2);
 
-    public static List<Task> serializeJsonStringToTasks() throws IOException {
-        String firstData = Files.readString(FILE_LOCATION);
+            List<String> previousTaskData = Arrays.stream(firstData.split("},")).toList();
 
-        firstData = firstData.substring(10,firstData.length()-2);
-
-        List<String> previousTaskData = Arrays.stream(firstData.split("},")).toList();
-
-        previousTaskData.forEach(str -> {
-            taskData.add(Task.getTaskFromString(str));
-        });
-        taskData.forEach(System.out::println);
-        return taskData;
+            previousTaskData.forEach(str -> taskData.add(Task.getTaskFromString(str)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void saveAlterations(List<Task> tasks) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("{\"tasks\":[");
-        tasks.forEach(t -> { sb.append(t.toString()).append(",\n"); });
-        sb.deleteCharAt(sb.length()-2);
+        tasks.forEach(t -> sb.append(t.toString()).append(",\n"));
+        sb.deleteCharAt(sb.length() - 2);
         sb.append("]}");
-        Files.writeString(FILE_LOCATION,sb);
+        Files.writeString(FILE_LOCATION, sb);
     }
 }
