@@ -44,18 +44,18 @@ public class Main {
                 }
 
                 case "delete": {
-//                    if (command.equals("delete")) {
-//                        System.out.println("please type the id of the task. example: 'delete 1'.");
-//                    } else {
-//                        if (Integer.parseInt(command.substring(7)) == 0 ||
-//                                Integer.parseInt(command.substring(7)) > taskData.size() - 1) {
-//                            System.out.println("id not found,please try again.");
-//                        } else {
-//                            taskData.remove(Integer.parseInt(command.substring(7)));
-//                            System.out.printf("task \"%s\" deleted with success.%n",
-//                                    taskData.getLast().getDescription());
-//                        }
-//                    }
+                    if (command.equals("delete")) {
+                        System.out.println("please type the id of the task. example: 'delete 1'.");
+                    } else {
+                        if (Integer.parseInt(command.substring(7)) == 0 ||
+                                Integer.parseInt(command.substring(7)) > taskData.size()) {
+                            System.out.println("id not found,please try again.");
+                        } else {
+                            taskData.remove(Integer.parseInt(command.substring(7))-1);
+                            System.out.printf("task \"%s\" deleted with success.%n",
+                                    taskData.getLast().getDescription());
+                        }
+                    }
                     break;
                 }
 
