@@ -14,6 +14,8 @@ public class Main {
     public static final String PURPLE = "\u001B[35m";
     public static final String RESET = "\u001B[0m";
 
+    public static int contador;
+
     public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
 
     public static void main(String[] args) throws IOException {
@@ -34,8 +36,17 @@ public class Main {
                     if (command.equals("add")) {
                         System.out.println("please type the description of the action. example: 'add \"sleep\"'.");
                     } else {
-                        taskData.add(Task.createTask(command.substring(4)));
-                        taskData.getLast().setId(taskData.indexOf(taskData.getLast()) + 1);
+                        taskData.add(new Task(command.substring(4),contador));
+                        /*
+                        vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
+                        que é o item que foi criado antes do novo item, pega o id dele e adiciona mais um. sempre
+                        com base no item criado na iteração anterior.
+
+                        obs.: paradas repentinas (sem o exit) não salva as alterações!
+                         */
+
+//                        taskData.getLast().setId(taskData.get(taskData.indexOf(taskData.getLast()) - 1).getId() + 1);
+
                         System.out.printf("task \"%s\" created with success! (ID: %d )%n",
                                 taskData.getLast().getDescription(),
                                 taskData.getLast().getId());
