@@ -76,14 +76,13 @@ public class Task {
         return t;
     }
         //futuramente troca essa função aqui, pode ser um construtor!
-    public static Task createTask(String taskDescription) {
-        Task task = new Task();
-        task.setId(0);
-        task.setDescription(taskDescription.replace("\"",""));
-        task.setStatus(TaskStatus.TODO);
-        task.createdAt = LocalDateTime.now();
-        task.updatedAt = LocalDateTime.now();
-        return task;
+    public Task (String taskDescription, int contador ) {
+        contador++;
+        this.setId(contador);
+        this.setDescription(taskDescription.replace("\"",""));
+        this.setStatus(TaskStatus.TODO);
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @Override
