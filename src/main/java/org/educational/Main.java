@@ -36,7 +36,7 @@ public class Main {
                     if (command.equals("add")) {
                         System.out.println("please type the description of the action. example: 'add \"sleep\"'.");
                     } else {
-                        taskData.add(new Task(command.substring(4),counter));
+                        taskData.add(new Task(command.substring(4), counter));
                         /*
                         vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
                         que é o item que foi criado antes do novo item, pega o id dele e adiciona mais um. sempre
@@ -45,9 +45,7 @@ public class Main {
                         obs.: paradas repentinas (sem o exit) não salva as alterações!
                          */
 
-                        System.out.printf("task \"%s\" created with success! (ID: %d )%n",
-                                taskData.getLast().getDescription(),
-                                taskData.getLast().getId());
+                        System.out.printf("task \"%s\" created with success! (ID: %d )%n", taskData.getLast().getDescription(), taskData.getLast().getId());
                     }
                     break;
                 }
@@ -56,13 +54,11 @@ public class Main {
                     if (command.equals("delete")) {
                         System.out.println("please type the id of the task. example: 'delete 1'.");
                     } else {
-                        if (Integer.parseInt(command.substring(7)) == 0 ||
-                                Integer.parseInt(command.substring(7)) > taskData.size()) {
+                        if (Integer.parseInt(command.substring(7)) == 0 || Integer.parseInt(command.substring(7)) > taskData.size()) {
                             System.out.println("id not found,please try again.");
                         } else {
-                            taskData.remove(Integer.parseInt(command.substring(7))-1);
-                            System.out.printf("task \"%s\" deleted with success.%n",
-                                    taskData.getLast().getDescription());
+                            taskData.remove(Integer.parseInt(command.substring(7)) - 1);
+                            System.out.printf("task \"%s\" deleted with success.%n", taskData.getLast().getDescription());
                         }
                     }
                     break;
@@ -88,13 +84,16 @@ public class Main {
                                 break;
                             }
                             default: {
-                                System.out.println(" please type \"list done\", \"list todo\"" +
-                                        " or \"list in-progress\" to see specific tasks status.");
+                                System.out.println(" please type \"list done\", \"list todo\"" + " or \"list in-progress\" to see specific tasks status.");
                             }
                         }
                     } else {
-                        System.out.println("All tasks:");
-                        taskData.forEach(System.out::println);
+                        if (taskData.isEmpty()) {
+                            System.out.println("No tasks include. please type a new task to see more.");
+                        } else {
+                            System.out.println("All tasks:");
+                            taskData.forEach(System.out::println);
+                        }
                     }
                     break;
                 }
@@ -147,8 +146,7 @@ public class Main {
         try {
             String firstData = Files.readString(path);
 
-            counter = Integer.parseInt(firstData.split(":")[firstData.split(":").length - 1]
-                    .replace("}",""));
+            counter = Integer.parseInt(firstData.split(":")[firstData.split(":").length - 1].replace("}", ""));
             System.out.println(counter);
 
             firstData = firstData.substring(10, firstData.length() - 2);
