@@ -16,7 +16,7 @@ public class Main {
 
     public static int counter;
 
-    public static final Path FILE_LOCATION = Path.of("C:\\Users\\Lucas\\Desktop\\tasks.json");
+    public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
 
     public static void main(String[] args) throws IOException {
 
@@ -136,23 +136,19 @@ public class Main {
                 System.out.println("not suficient info found.");
             } else {
                 serializeJsonStringToTasks(path);
-                getCounterValue(path);
             }
         } else {
             Files.createFile(path);
         }
     }
 
-    public static void getCounterValue(Path path) {
-
-
-    }
 
     public static void serializeJsonStringToTasks(Path path) {
         try {
             String firstData = Files.readString(path);
 
-            counter = Integer.getInteger(firstData.split(":")[firstData.split(":").length - 1]);
+            counter = Integer.parseInt(firstData.split(":")[firstData.split(":").length - 1]
+                    .replace("}",""));
             System.out.println(counter);
 
             firstData = firstData.substring(10, firstData.length() - 2);

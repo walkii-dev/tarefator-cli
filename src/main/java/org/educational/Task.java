@@ -68,11 +68,33 @@ public class Task {
 
         List<String> taskProperties = Arrays.stream(jsonTask.split(",")).toList();
 
-        t.setId(Integer.parseInt(taskProperties.get(0).split(":")[1].trim()));
-        t.setDescription(taskProperties.get(1).split(":")[1].trim());
-        t.setStatus(TaskStatus.valueOf(taskProperties.get(2).split(":")[1].trim())); // melhorar esse enum
-        t.setCreatedAt(LocalDateTime.parse(taskProperties.get(3).split("\":")[1].replace("}", "").trim()));
-        t.setUpdatedAt(LocalDateTime.parse(taskProperties.get(4).split("\":")[1].replace("}", "").trim()));
+        t.setId(
+                Integer.parseInt(taskProperties.get(0)
+                        .split(":")[1]
+                        .trim()));
+        t.setDescription(
+                taskProperties.get(1)
+                        .split(":")[1]
+                        .replace("\"","")
+                        .trim());
+        t.setStatus(
+                TaskStatus.valueOf(taskProperties.get(2)
+                        .split(":")[1]
+                        .replace("\"","")
+                        .trim())); // melhorar esse enum
+        t.setCreatedAt(
+                LocalDateTime.parse(taskProperties.get(3)
+                        .split("\":")[1]
+                        .replace("}", "")
+                        .replace("\"","")
+                        .trim()));
+        t.setUpdatedAt(
+                LocalDateTime.parse(taskProperties.get(4)
+                        .split("\":")[1]
+                        .replace("}", "")
+                        .replace("\"","")
+                        .replace("]","")
+                        .trim()));
         return t;
     }
 
@@ -80,7 +102,7 @@ public class Task {
         counter++;
         this.setId(counter);
         System.out.println(counter);
-        this.setDescription(taskDescription.replace("\"",""));
+        this.setDescription(taskDescription);
         this.setStatus(TaskStatus.TODO);
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -89,9 +111,9 @@ public class Task {
     @Override
     public String toString() {
         return "{\"id\":" + this.id + "," +
-                "\"description\":" + this.description + "," +
-                "\"status\":" + this.status + "," +
-                "\"createdAt\":" + this.createdAt + "," +
-                "\"updatedAt\":" + this.updatedAt + "}";
+                "\"description\":\"" + this.description + "\"," +
+                "\"status\":\"" + this.status + "\"," +
+                "\"createdAt\":\"" + this.createdAt + "\"," +
+                "\"updatedAt\":\"" + this.updatedAt + "\"}";
     }
 }
