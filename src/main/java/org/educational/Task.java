@@ -75,10 +75,11 @@ public class Task {
         t.setUpdatedAt(LocalDateTime.parse(taskProperties.get(4).split("\":")[1].replace("}", "").trim()));
         return t;
     }
-        //futuramente troca essa função aqui, pode ser um construtor!
-    public Task (String taskDescription, int contador ) {
-        contador++;
-        this.setId(contador);
+
+    public Task (String taskDescription, int counter ) {
+        counter++;
+        this.setId(counter);
+        System.out.println(counter);
         this.setDescription(taskDescription.replace("\"",""));
         this.setStatus(TaskStatus.TODO);
         this.createdAt = LocalDateTime.now();

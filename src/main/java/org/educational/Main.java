@@ -14,9 +14,9 @@ public class Main {
     public static final String PURPLE = "\u001B[35m";
     public static final String RESET = "\u001B[0m";
 
-    public static int contador;
+    public static int counter;
 
-    public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
+    public static final Path FILE_LOCATION = Path.of("C:\\Users\\Lucas\\Desktop\\tasks.json");
 
     public static void main(String[] args) throws IOException {
 
@@ -36,7 +36,7 @@ public class Main {
                     if (command.equals("add")) {
                         System.out.println("please type the description of the action. example: 'add \"sleep\"'.");
                     } else {
-                        taskData.add(new Task(command.substring(4),contador));
+                        taskData.add(new Task(command.substring(4),counter));
                         /*
                         vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
                         que é o item que foi criado antes do novo item, pega o id dele e adiciona mais um. sempre
@@ -44,8 +44,6 @@ public class Main {
 
                         obs.: paradas repentinas (sem o exit) não salva as alterações!
                          */
-
-//                        taskData.getLast().setId(taskData.get(taskData.indexOf(taskData.getLast()) - 1).getId() + 1);
 
                         System.out.printf("task \"%s\" created with success! (ID: %d )%n",
                                 taskData.getLast().getDescription(),
@@ -138,15 +136,25 @@ public class Main {
                 System.out.println("not suficient info found.");
             } else {
                 serializeJsonStringToTasks(path);
+                getCounterValue(path);
             }
         } else {
             Files.createFile(path);
         }
     }
 
+    public static void getCounterValue(Path path) {
+
+
+    }
+
     public static void serializeJsonStringToTasks(Path path) {
         try {
             String firstData = Files.readString(path);
+
+            counter = Integer.getInteger(firstData.split(":")[firstData.split(":").length - 1]);
+            System.out.println(counter);
+
             firstData = firstData.substring(10, firstData.length() - 2);
 
             List<String> previousTaskData = Arrays.stream(firstData.split("},")).toList();
@@ -162,7 +170,12 @@ public class Main {
         sb.append("{\"tasks\":[");
         tasks.forEach(t -> sb.append(t.toString()).append(",\n"));
         sb.deleteCharAt(sb.length() - 2);
-        sb.append("]}");
+        sb.append("],\"counter\":");
+        sb.append(counter);
+        sb.append("}");
+
         Files.writeString(FILE_LOCATION, sb);
     }
+
+
 }
