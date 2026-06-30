@@ -62,6 +62,16 @@ public class Task {
         this.description = description;
     }
 
+    public static void deleteTask (List<Task> taskList, int idNumber){
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getId() == idNumber){
+                taskList.remove(i);
+            }else {
+                System.out.println("task not found.");
+            }
+        }
+
+    }
 
     public static Task getTaskFromString(String jsonTask) {
         Task t = new Task();

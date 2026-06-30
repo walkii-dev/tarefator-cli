@@ -36,6 +36,7 @@ public class Main {
                     if (command.equals("add")) {
                         System.out.println("please type the description of the action. example: 'add \"sleep\"'.");
                     } else {
+                        counter++;
                         taskData.add(new Task(command.substring(4), counter));
                         /*
                         vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
@@ -54,10 +55,10 @@ public class Main {
                     if (command.equals("delete")) {
                         System.out.println("please type the id of the task. example: 'delete 1'.");
                     } else {
-                        if (Integer.parseInt(command.substring(7)) == 0 || Integer.parseInt(command.substring(7)) > taskData.size()) {
+                        if (Integer.parseInt(command.substring(7)) == 0) {
                             System.out.println("id not found,please try again.");
                         } else {
-                            taskData.remove(Integer.parseInt(command.substring(7)) - 1);
+                            Task.deleteTask(taskData,Integer.parseInt(command.substring(7)) - 1);
                             System.out.printf("task \"%s\" deleted with success.%n", taskData.getLast().getDescription());
                         }
                     }
