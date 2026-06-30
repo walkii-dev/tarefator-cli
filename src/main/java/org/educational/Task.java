@@ -99,9 +99,7 @@ public class Task {
     }
 
     public Task (String taskDescription, int counter ) {
-        counter++;
         this.setId(counter);
-        System.out.println(counter);
         this.setDescription(taskDescription);
         this.setStatus(TaskStatus.TODO);
         this.createdAt = LocalDateTime.now();

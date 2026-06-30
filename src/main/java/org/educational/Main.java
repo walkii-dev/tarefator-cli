@@ -36,6 +36,8 @@ public class Main {
                     if (command.equals("add")) {
                         System.out.println("please type the description of the action. example: 'add \"sleep\"'.");
                     } else {
+                        counter++;
+                        System.out.println("contador está em :"+counter);
                         taskData.add(new Task(command.substring(4),counter));
                         /*
                         vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
@@ -149,7 +151,7 @@ public class Main {
 
             counter = Integer.parseInt(firstData.split(":")[firstData.split(":").length - 1]
                     .replace("}",""));
-            System.out.println(counter);
+            System.out.println("contador está em :"+counter);
 
             firstData = firstData.substring(10, firstData.length() - 2);
 
