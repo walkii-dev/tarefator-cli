@@ -1,6 +1,6 @@
 # Tarefator-cli
 
-O Tarefator-CLI é uma aplicação de linha de comando a qual permite ao usuário 
+O 'Tarefator-cli' é uma aplicação de linha de comando a qual permite ao usuário 
 gerenciar tarefas. O intuito é simular e simplificar a organização das tarefas
 do dia-a-dia.
 O projeto é feito em java puro, sem o uso de bibliotecas externas, unindo 
@@ -10,8 +10,12 @@ StringBuilder).
 
 ## Tecnologias usadas:
 ___
-- Java 21 (Eclipse Temurin 21.11)
-- Docker (em desenvolvimento)
+- Java 21 (Eclipse Temurin 21.11);
+- Orientação a Objetos (Abstração, Encapsulamento);
+- Bibliotecas Nativas como Integer, Scanner, Files, StringBuilder, entre outros;
+- Utilização de Streams e Lambdas;
+- Uso da estrutura de dados List;
+
 
 ## Executando a aplicação
 ___
@@ -34,6 +38,12 @@ e inicie a aplicação com `java Main.java`.
 ## Como utilizar
 ___
 
+- Para adição de tarefas, digite `add <descrição>`. exemplo : `add "acordar"`
+*"Saída: 'task "acordar" created with success! (ID: 1 )"*
+- Para deleção de tarefas, digite `delete <ID>`. exemplo: `delete 1`
+*"Saída: 'task "acordar" deleted."*
+- Para listar todas as tarefas criadas, digite somente `list`. 
+
 ## Desafios do projeto
 ___
 A utilização de *somente* bibliotecas nativas da linguagem possibilitou que houvesse muito
@@ -44,8 +54,19 @@ Algo que foi trabalhoso foi lidar com arquivos externos da aplicação, partindo
 o desafio original pediu que guardássemos as tarefas em um arquivo json, mantendo sua 
 formatação.
 
-O uso da estrutura de dados Lista foi essencial para fazer com que a aplicação ficasse mais
-organizada, e lidando direta e dinamicamente com as solicitações do usuário.
+O uso da estrutura de dados **List** foi essencial para fazer com que a aplicação ficasse 
+mais organizada, e lidando direta e dinamicamente com as solicitações do usuário.
+
+## Próximos passos
+___
+- [x] leitura de comandos do usuário
+- [x] criação de tarefas
+- [x] criação /recuperação de dados via arquivo .json
+- [x] tratamento de erros de serialização/ desserialização
+- [ ] Deleção de tarefas
+- [ ] Edição de tarefas
+- [ ] Listagem de tarefas por tipo
+- [ ] Implementação Docker
 
 ***Licença do Projeto: MIT License*** 
 
