@@ -69,6 +69,18 @@ public class Task {
         }
         System.out.println("id not found, please input a valid id of task.");
 
+    }public static void editTask (List<Task> taskList, int idNumber, String description){
+        for (Task t :taskList){
+            if (t.id == idNumber){
+                t.setDescription(description);
+                t.setUpdatedAt(LocalDateTime.now());
+                System.out.printf("task %d is updated with success.\n" +
+                        "the task is now \"%s\".\n",t.id,t.description);
+                return;
+            }
+        }
+        System.out.println("id not found, please input a valid id of task.");
+
     }
 
     public static Task getTaskFromString(String jsonTask) {

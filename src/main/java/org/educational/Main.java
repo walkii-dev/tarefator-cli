@@ -60,7 +60,14 @@ public class Main {
                     break;
                 }
 
-                //edição de task
+                case "update": {
+                    if (!command.equals("update")) {
+                        Task.editTask(taskData,Integer.parseInt(processCommand[1]),processCommand[2]);
+                    } else {
+                        System.out.println("please type the id of the task. example: 'update 1 \"task\".");
+                    }
+                    break;
+                }
 
                 //marcação de task
 
