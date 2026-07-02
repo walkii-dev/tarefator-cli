@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Task {
     private int id;
     private String description;
@@ -63,14 +64,21 @@ public class Task {
     }
 
     public static void deleteTask (List<Task> taskList, int idNumber){
-        for (int i = 0; i < taskList.size(); i++) {
-            if (taskList.get(i).getId() == idNumber){
-                taskList.remove(i);
-            }else {
-                System.out.println("task not found.");
+        for (Task t :taskList){
+            if (t.id == idNumber){
+                System.out.printf("task %s removed with success.\n",t.getDescription());
+                taskList.remove(t);
+                return;
             }
         }
+        System.out.println("id not found, please input a valid id of task.");
 
+
+//        if (taskList.contains(taskList.get(idNumber))){
+//           taskList.remove(idNumber);
+//       } else {
+//           System.out.println("id not found, try again.");
+//       }
     }
 
     public static Task getTaskFromString(String jsonTask) {

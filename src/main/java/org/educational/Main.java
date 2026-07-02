@@ -52,15 +52,10 @@ public class Main {
                 }
 
                 case "delete": {
-                    if (command.equals("delete")) {
-                        System.out.println("please type the id of the task. example: 'delete 1'.");
+                    if (!command.equals("delete")) {
+                        Task.deleteTask(taskData,Integer.parseInt(command.substring(7).trim()));
                     } else {
-                        if (Integer.parseInt(command.substring(7)) == 0) {
-                            System.out.println("id not found,please try again.");
-                        } else {
-                            Task.deleteTask(taskData,Integer.parseInt(command.substring(7)) - 1);
-                            System.out.printf("task \"%s\" deleted with success.%n", taskData.getLast().getDescription());
-                        }
+                        System.out.println("please type the id of the task. example: 'delete 1'.");
                     }
                     break;
                 }
@@ -132,7 +127,7 @@ public class Main {
     public static void verifyPreviousDataExistence(Path path) throws IOException {
         if (Files.exists(path)) {
             int fileLength = Files.readString(path).length();
-            if (fileLength <= 11) {
+            if (fileLength <= 23) {
                 System.out.println("not suficient info found.");
             } else {
                 serializeJsonStringToTasks(path);
