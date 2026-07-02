@@ -137,7 +137,6 @@ public class Main {
         }
     }
 
-
     public static void serializeJsonStringToTasks(Path path) {
         try {
             String firstData = Files.readString(path);
