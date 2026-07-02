@@ -9,10 +9,12 @@ moderno, como classes wrappers(Integers) e bibliotecas nativas (Scanner, Files,
 StringBuilder).
 
 ## Tecnologias usadas:
-- Java 21(Eclipse Temurin)
+___
+- Java 21 (Eclipse Temurin 21.11)
 - Docker (em desenvolvimento)
 
 ## Executando a aplicação
+___
 
 Nesta página mesmo , clique no botão de "code" em verde, depois na opção "HTTPS" e, ao
 lado do texto, clique no ícone que está a direita. Ele copiará o código da aplicação.
@@ -29,9 +31,11 @@ simplesmente executando o comando `cd tarefator-cli/src/main/java/org/educationa
 Na pasta principal, faça a compilação do código pelo comando `javac Main.java`
 e inicie a aplicação com `java Main.java`.
 
-## Como utilizar 
+## Como utilizar
+___
 
 ## Desafios do projeto
+___
 A utilização de *somente* bibliotecas nativas da linguagem possibilitou que houvesse muito
 manejamento de String, então de qualquer forma foi bom entender a concatenação de Strings
 e a recuperação de valores delas para o projeto.
@@ -42,4 +46,6 @@ formatação.
 
 O uso da estrutura de dados Lista foi essencial para fazer com que a aplicação ficasse mais
 organizada, e lidando direta e dinamicamente com as solicitações do usuário.
+
+***Licença do Projeto: MIT License*** 
 
