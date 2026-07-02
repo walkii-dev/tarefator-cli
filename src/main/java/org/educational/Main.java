@@ -143,7 +143,6 @@ public class Main {
             String firstData = Files.readString(path);
 
             counter = Integer.parseInt(firstData.split(":")[firstData.split(":").length - 1].replace("}", ""));
-            System.out.println(counter);
 
             firstData = firstData.substring(10, firstData.length() - 2);
 

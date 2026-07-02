@@ -12,10 +12,6 @@ public class Task {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public static int deleteTask(String substring) {
-        return 0;
-    }
-
     public int getId() {
         return id;
     }
@@ -73,12 +69,6 @@ public class Task {
         }
         System.out.println("id not found, please input a valid id of task.");
 
-
-//        if (taskList.contains(taskList.get(idNumber))){
-//           taskList.remove(idNumber);
-//       } else {
-//           System.out.println("id not found, try again.");
-//       }
     }
 
     public static Task getTaskFromString(String jsonTask) {
