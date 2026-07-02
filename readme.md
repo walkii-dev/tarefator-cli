@@ -63,7 +63,7 @@ ___
 - [x] criação de tarefas
 - [x] criação /recuperação de dados via arquivo .json
 - [x] tratamento de erros de serialização/ desserialização
-- [ ] Deleção de tarefas
+- [x] Deleção de tarefas
 - [ ] Edição de tarefas
 - [ ] Listagem de tarefas por tipo
 - [ ] Implementação Docker
