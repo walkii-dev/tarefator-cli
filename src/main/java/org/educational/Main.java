@@ -16,7 +16,7 @@ public class Main {
 
     public static int counter;
 
-    public static final Path FILE_LOCATION = Path.of("C:\\Users\\Usuário\\Desktop\\tasks.json");
+    public static final Path FILE_LOCATION = Path.of("tasks.json");
 
     public static void main(String[] args) throws IOException {
 
