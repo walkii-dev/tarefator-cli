@@ -1,1 +1,8 @@
-{"tasks"[],"counter":1}
+{"tasks":[{"id":1,"description":"d","status":"DONE","createdAt":"2026-07-04T17:13:27.625534300","updatedAt":"2026-07-04T17:40:13.393101200"},
+{"id":3,"description":"z","status":"IN_PROGRESS","createdAt":"2026-07-04T17:13:31.043503400","updatedAt":"2026-07-04T17:39:13.112707500"},
+{"id":4,"description":"c","status":"DONE","createdAt":"2026-07-04T17:47:19.129718700","updatedAt":"2026-07-04T17:47:30.836752"},
+{"id":5,"description":"d","status":"DONE","createdAt":"2026-07-04T17:47:21.100732300","updatedAt":"2026-07-04T18:01:53.500490200"},
+{"id":6,"description":"a","status":"TODO","createdAt":"2026-07-04T18:05:43.835009200","updatedAt":"2026-07-04T18:05:43.835009200"},
+{"id":7,"description":"b ","status":"TODO","createdAt":"2026-07-04T18:05:46.518247500","updatedAt":"2026-07-04T18:05:46.518247500"},
+{"id":8,"description":"c","status":"TODO","createdAt":"2026-07-04T18:05:48.126249900","updatedAt":"2026-07-04T18:05:48.126249900"}
+],"counter":8}

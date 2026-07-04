@@ -112,7 +112,9 @@ public class Main {
                                 break;
                             }
                             default: {
-                                System.out.println(" please type \"list done\", \"list todo\"" + " or \"list in-progress\" to see specific tasks status.");
+                                System.out.println(" please type \"list done\"," +
+                                        " \"list todo\"" + " or \"list in-progress\"" +
+                                        " to see specific tasks status.");
                             }
                         }
                     } else {
@@ -141,6 +143,9 @@ public class Main {
                     System.out.print("""
                             commands:
                             >add "<taskname>": add a new task
+                            >update <id> "<taskname>": change the description of the task
+                            >delete <id>: delete the task of list
+                            >mark-in-progress / mark-done: mark the task status.
                             >list: list all tasks
                             >list <todo/done/in-progress>: list tasks by status
                             >help: show all commands avaliable
