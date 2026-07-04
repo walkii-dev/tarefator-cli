@@ -85,15 +85,30 @@ public class Main {
                     if (command.substring(4).length() > 1) {
                         switch (command.substring(5)) {
                             case "todo": {
-                                System.out.println("todo tasks.");
+                                System.out.println("todo tasks: \n");
+                                taskData.stream()
+                                        .filter(task -> task
+                                                .getStatus()
+                                                .equals(TaskStatus.TODO))
+                                        .forEach(System.out::println);
                                 break;
                             }
                             case "done": {
-                                System.out.println("done tasks.");
+                                System.out.println("done tasks: \n");
+                                taskData.stream()
+                                        .filter(task -> task
+                                                .getStatus()
+                                                .equals(TaskStatus.DONE))
+                                        .forEach(System.out::println);
                                 break;
                             }
                             case "in-progress": {
-                                System.out.println("tasks in progress.");
+                                System.out.println("tasks in progress: \n");
+                                taskData.stream()
+                                        .filter(task -> task
+                                                .getStatus()
+                                                .equals(TaskStatus.IN_PROGRESS))
+                                        .forEach(System.out::println);
                                 break;
                             }
                             default: {
