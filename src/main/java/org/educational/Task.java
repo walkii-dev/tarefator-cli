@@ -9,6 +9,7 @@ public class Task {
     private int id;
     private String description;
     private TaskStatus status;
+//    private final String[] tstatus = {"done","in progress","todo"}; isso pode ser um array primitivo ao inves de enum.
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -55,10 +56,6 @@ public class Task {
     public Task() {
     }
 
-    public Task(String description) {
-        this.description = description;
-    }
-
     public static void deleteTask(List<Task> taskList, int idNumber) {
         for (Task t : taskList) {
             if (t.id == idNumber) {
@@ -68,7 +65,6 @@ public class Task {
             }
         }
         System.out.println("id not found, please input a valid id of task.");
-
     }
 
     public static void editTask(List<Task> taskList, int idNumber, String description) {
