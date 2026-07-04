@@ -42,7 +42,12 @@ ___
 *"Saída: 'task "acordar" created with success! (ID: 1 )"*
 - Para deleção de tarefas, digite `delete <ID>`. exemplo: `delete 1`
 *"Saída: 'task "acordar" deleted."*
-- Para listar todas as tarefas criadas, digite somente `list`. 
+- Para marcar uma tarefa como `in-progress` ou `done`, basta apenas inserir o id após
+`mark-in-progress` ou `mark-done`.
+- Para listar todas as tarefas criadas, digite somente `list`. Se preferir
+listar por tipo, você pode inserir `list done` , `list in-progress` ou `list todo`.
+
+Para qualquer dúvida, o comando `help` na aplicação pode te ajudar ou relembrar.
 
 ## Desafios do projeto
 ___
@@ -64,8 +69,8 @@ ___
 - [x] criação /recuperação de dados via arquivo .json
 - [x] tratamento de erros de serialização/ desserialização
 - [x] Deleção de tarefas
-- [ ] Edição de tarefas
-- [ ] Listagem de tarefas por tipo
+- [x] Edição de tarefas
+- [x] Listagem de tarefas por tipo
 - [ ] Implementação Docker
 
 ***Licença do Projeto: MIT License*** 
