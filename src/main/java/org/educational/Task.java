@@ -59,28 +59,44 @@ public class Task {
         this.description = description;
     }
 
-    public static void deleteTask (List<Task> taskList, int idNumber){
-        for (Task t :taskList){
-            if (t.id == idNumber){
-                System.out.printf("task %s removed with success.\n",t.getDescription());
+    public static void deleteTask(List<Task> taskList, int idNumber) {
+        for (Task t : taskList) {
+            if (t.id == idNumber) {
+                System.out.printf("task %s removed with success.\n", t.getDescription());
                 taskList.remove(t);
                 return;
             }
         }
         System.out.println("id not found, please input a valid id of task.");
 
-    }public static void editTask (List<Task> taskList, int idNumber, String description){
-        for (Task t :taskList){
-            if (t.id == idNumber){
+    }
+
+    public static void editTask(List<Task> taskList, int idNumber, String description) {
+        for (Task t : taskList) {
+            if (t.id == idNumber) {
                 t.setDescription(description);
                 t.setUpdatedAt(LocalDateTime.now());
                 System.out.printf("task %d is updated with success.\n" +
-                        "the task is now \"%s\".\n",t.id,t.description);
+                        "the task is now \"%s\".\n", t.id, t.description);
                 return;
             }
         }
         System.out.println("id not found, please input a valid id of task.");
+    }
 
+    public static void markTask(List<Task> taskList, int idNumber, TaskStatus status) {
+        for (Task t : taskList) {
+            if (t.id == idNumber) {
+                if (t.status.equals(TaskStatus.DONE)) {
+                        System.out.println("this task cannot be changed because the task is done.");
+                        return;
+                } else {
+                    t.setStatus(status);
+                    t.setUpdatedAt(LocalDateTime.now());
+                    System.out.printf("now the task \"%s\" is %s.\n", t.id, t.status.toString());
+                }
+            }
+        }
     }
 
     public static Task getTaskFromString(String jsonTask) {
@@ -95,30 +111,30 @@ public class Task {
         t.setDescription(
                 taskProperties.get(1)
                         .split(":")[1]
-                        .replace("\"","")
+                        .replace("\"", "")
                         .trim());
         t.setStatus(
                 TaskStatus.valueOf(taskProperties.get(2)
                         .split(":")[1]
-                        .replace("\"","")
+                        .replace("\"", "")
                         .trim())); // melhorar esse enum
         t.setCreatedAt(
                 LocalDateTime.parse(taskProperties.get(3)
                         .split("\":")[1]
                         .replace("}", "")
-                        .replace("\"","")
+                        .replace("\"", "")
                         .trim()));
         t.setUpdatedAt(
                 LocalDateTime.parse(taskProperties.get(4)
                         .split("\":")[1]
                         .replace("}", "")
-                        .replace("\"","")
-                        .replace("]","")
+                        .replace("\"", "")
+                        .replace("]", "")
                         .trim()));
         return t;
     }
 
-    public Task (String taskDescription, int counter ) {
+    public Task(String taskDescription, int counter) {
         this.setId(counter);
         this.setDescription(taskDescription);
         this.setStatus(TaskStatus.TODO);

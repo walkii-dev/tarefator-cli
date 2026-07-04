@@ -1,14 +1,30 @@
 package org.educational;
 
 public enum TaskStatus {
-    TODO,
-    IN_PROGRESS,
-    DONE;
+    TODO("to do"),
+    IN_PROGRESS("in progress"),
+    DONE("done");
 
-    public String status;
+    public final String description;
 
-    public String getStatus() {
-        return status;
+    private TaskStatus(String description){
+        this.description = description;
     }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public static TaskStatus byDescription(String description) {
+        for (TaskStatus status : values()){
+            if (status.description.contains(description)){
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Invalid description: "+description);
+    }
+
+
+
 
 }

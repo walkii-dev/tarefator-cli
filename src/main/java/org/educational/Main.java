@@ -69,7 +69,17 @@ public class Main {
                     break;
                 }
 
-                //marcação de task
+                case "mark-in-progress": {
+                    int taskToProcess = Integer.parseInt(processCommand[1]);
+                    Task.markTask(taskData,taskToProcess,TaskStatus.IN_PROGRESS);
+                    break;
+                }
+
+                case "mark-done": {
+                    int taskToProcess = Integer.parseInt(processCommand[1]);
+                    Task.markTask(taskData,taskToProcess,TaskStatus.DONE);
+                    break;
+                }
 
                 case "list": {
                     if (command.substring(4).length() > 1) {
