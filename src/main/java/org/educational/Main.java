@@ -41,22 +41,22 @@ public class Main {
                         counter++;
                         taskData.add(new Task(command.substring(4), counter));
 
-                        /*
-                        vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
-                        que é o item que foi criado antes do novo item, pega o id dele e adiciona mais um. sempre
-                        com base no item criado na iteração anterior.
-
-                        obs.: paradas repentinas (sem o exit) não salva as alterações!
-                         */
-
-                        System.out.printf("task \"%s\" created with success! (ID: %d )%n", taskData.getLast().getDescription(), taskData.getLast().getId());
+                        System.out.printf("task \"%s\" created with success! (ID: %d )%n",
+                                taskData
+                                        .getLast()
+                                        .getDescription(),
+                                taskData
+                                        .getLast()
+                                        .getId());
                     }
                     break;
                 }
 
                 case "delete": {
                     if (!command.equals("delete")) {
-                        Task.deleteTask(taskData,Integer.parseInt(command.substring(7).trim()));
+                        Task.deleteTask(taskData,
+                                Integer.parseInt(command.substring(7)
+                                                .trim()));
                     } else {
                         System.out.println("please type the id of the task. example: 'delete 1'.");
                     }
@@ -65,7 +65,8 @@ public class Main {
 
                 case "update": {
                     if (!command.equals("update")) {
-                        Task.editTask(taskData,Integer.parseInt(processCommand[1]),processCommand[2]);
+                        Task.editTask(taskData,Integer.parseInt(processCommand[1]),
+                                processCommand[2]);
                     } else {
                         System.out.println("please type the id of the task. example: 'update 1 \"task\".");
                     }
@@ -73,14 +74,22 @@ public class Main {
                 }
 
                 case "mark-in-progress": {
-                    int taskToProcess = Integer.parseInt(processCommand[1]);
-                    Task.markTask(taskData,taskToProcess,TaskStatus.IN_PROGRESS);
+                    try {
+                        int taskToProcess = Integer.parseInt(processCommand[1]);
+                        Task.markTask(taskData, taskToProcess, TaskStatus.IN_PROGRESS);
+                    } catch (NumberFormatException e) {
+                        System.out.println("this isn´t a number, please type again.");
+                    }
                     break;
                 }
 
                 case "mark-done": {
-                    int taskToProcess = Integer.parseInt(processCommand[1]);
-                    Task.markTask(taskData,taskToProcess,TaskStatus.DONE);
+                    try {
+                        int taskToProcess = Integer.parseInt(processCommand[1]);
+                        Task.markTask(taskData, taskToProcess, TaskStatus.DONE);
+                    } catch (NumberFormatException e) {
+                        System.out.println("this isn´t a number, please type again.");
+                    }
                     break;
                 }
 
