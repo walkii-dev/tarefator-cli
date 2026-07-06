@@ -22,6 +22,8 @@ public class Main {
 
         verifyPreviousDataExistence(FILE_LOCATION);
 
+        System.out.println("Welcome to tarefator-cli!");
+
         boolean exitCondition = false;
         String command;
 
@@ -38,6 +40,7 @@ public class Main {
                     } else {
                         counter++;
                         taskData.add(new Task(command.substring(4), counter));
+
                         /*
                         vai até a lista de tarefas, localiza o indice do último item pra procurar o indice anterior
                         que é o item que foi criado antes do novo item, pega o id dele e adiciona mais um. sempre

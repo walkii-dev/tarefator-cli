@@ -62,6 +62,7 @@ formatação.
 O uso da estrutura de dados **List** foi essencial para fazer com que a aplicação ficasse 
 mais organizada, e lidando direta e dinamicamente com as solicitações do usuário.
 
+
 ## Próximos passos
 ___
 - [x] leitura de comandos do usuário
